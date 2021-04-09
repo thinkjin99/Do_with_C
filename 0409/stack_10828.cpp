@@ -3,46 +3,59 @@ using namespace std;
 template<typename S>
 class Stack{
     private:
+        S array[10000];
         int head;
         int size;
-        S array[10000];
         void Push();
-        void Empty();
         void Pop();
-        void Size(); 
-        void Top();
-
-    public:
-       void Print_All(){
-            for(int i = 0; i <= head; i++){
-                cout << array[i] << endl;
+        void Size(){
+            cout << size << endl;
+        } 
+        void Top(){
+            if (size == 0){
+                cout << -1 << endl;
+                return;
             }
+            cout << array[head] << endl;
+
         }
+        void Empty(){
+            if(size == 0){
+                cout << 1 << endl;
+                return;
+            }
+            cout << 0 << endl;
+        }
+    public: 
         Stack():head(-1),size(0){}
         void Command(string cmd){
-            if (!strcmp(cmd.c_str(),"push")) this->Push();
-            // else if (strcmp(cmd.c_str(),"pop"))
-            //     this->Pop();
-            // else if (strcmp(cmd.c_str(),"empty"))
-            //     this->Empty();
-            // else if (strcmp(cmd.c_str(),"size"))
-            //     this->Size();
-            // else if (strcmp(cmd.c_str(),"top"))
-            //     this->Top();
-            else
-                cout << "Wrong input" << endl;
+            if (cmd == "push")this->Push();
+            else if (cmd =="pop")this->Pop();
+            else if (cmd == "empty")this->Empty();
+            else if (cmd == "size")this->Size();
+            else if (cmd == "top")this->Top();
             }
 };
 
 template <typename S>
 void Stack<S>::Push(){
     S data;
-    cout << "Input push Data" << ": ";
     cin >> data;
     array[++head] = data;
     size++;
 }
 
+template <typename S>
+void Stack<S>::Pop(){
+    if (size == 0){
+        cout << -1 << endl;
+        return;
+    }
+    cout << array[head] << endl;
+    if(head >= 0){head--;} 
+    if(size >= 0){size--;}
+    return;
+}
 
 int main(){
     Stack <int> s;
@@ -53,5 +66,4 @@ int main(){
         cin >> command;
         s.Command(command);
     }
-      s.Print_All();
 }
