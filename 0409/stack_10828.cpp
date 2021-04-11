@@ -58,12 +58,12 @@ void Stack<S>::Pop(){
 }
 
 int main(){
-    Stack <int> s;
+    Stack <int> S;
     int n;
     cin >> n;
     for(int i = 0; i < n; i++){
         string command;
         cin >> command;
-        s.Command(command);
+        S.Command(command);
     }
 }

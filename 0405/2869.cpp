@@ -2,20 +2,15 @@
 #include<math.h>
 using namespace std;
 int main(){
-    double day;
-    double night;
-    int goal;
-    cin >> day;
-    cin >> night;
-    cin >> goal;
-    // int disatnce = day;
-    // int count = 1;
-    // while (distance < goal){
-    //     distance -= night;
-    //     distance += day;
-    //     count++;
-    // }
-    double distance = (goal-day) / (day-night);
-    int count = ceil(distance);
-    cout << ++count << endl;
+    int day = 2;
+    int night = 1;
+    int goal = 5;
+    int distance = day;
+    int count = 1;
+    while (distance < goal) {
+        distance = (count + 1) * day  - count * night;
+        // 노트 참조
+        count++;
+    }
+    cout << count << endl;
 }
