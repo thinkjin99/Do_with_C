@@ -1,17 +1,20 @@
 #include<iostream>
 using namespace std;
-int binary_search(const int (&ref)[10],int start,int end,int num){
-    int middle = (end + start) / 2;
-    if (ref[middle] == num) return middle;
-    if (ref[middle] <= num) return binary_search(ref,middle+1,end,num);
-    else return binary_search(ref,start,middle-1,num);
+int binary_search(const int (&ref)[10],int now,int before,int num){
+    if (ref[now] == num) return now;
+    if (ref[now] <= num) {
+        int gap = abs((now - before) / 2);
+        if (!gap) gap++;
+        return binary_search(ref,now + gap,now,num);
+    }
+    else return binary_search(ref,now / 2,now,num);
     return -1;
 }
 int main(){
-    int arr[] = {1,2,3,4,5,6,7,8,10,12};
+    int arr[] = {0,4,6,8,10,14,22,30,44,70};
     int size = sizeof(arr) / sizeof(arr[0]);
     int num;
-    cout << "Input: ";
-    // cin >> num;
-    cout << binary_search(arr,0,size,10) << endl;
+    for (int i = 0; i < size; i++){
+        cout << "숫자: " << arr[i] << " 순서: " << binary_search(arr,(size-1) / 2,0,arr[i]) << endl;
+    }
 }
