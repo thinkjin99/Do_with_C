@@ -8,17 +8,19 @@ class Stack{
         int size;
         void Push();
         void Pop();
+
         void Size(){
             cout << size << endl;
         } 
+        
         void Top(){
             if (size == 0){
                 cout << -1 << endl;
                 return;
             }
             cout << array[head] << endl;
-
         }
+
         void Empty(){
             if(size == 0){
                 cout << 1 << endl;
@@ -26,6 +28,7 @@ class Stack{
             }
             cout << 0 << endl;
         }
+
     public: 
         Stack():head(-1),size(0){}
         void Command(string cmd){

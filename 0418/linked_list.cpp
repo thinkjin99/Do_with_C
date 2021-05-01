@@ -9,20 +9,22 @@ class Chain{
                 N data;
                 Node* link;
             public:
-                Node(int data){
+                Node(int data):link(nullptr){
                     this->data = data;
-                    link = nullptr;
+                }
+                ~Node(){
+                    cout << this->data << " is removed!!" << endl;
+                    this->link = nullptr; // 댕글링 포인터 방지!
                 }
         };
         Node* head;
         Node* tail;
-
     public:
-    Chain():head(nullptr),tail(nullptr){}
-    void push(N data);
-    void remove(N data);
-    void push_front(N data);
-    void print_list();
+        Chain():head(nullptr),tail(nullptr){}
+        void push(N data);
+        void remove(N data);
+        void push_front(N data);
+        void print_list();
 };
 
 template<typename N>
@@ -66,6 +68,7 @@ void Chain<N>::push_front(N data){
     head = new_head;
 }
 
+
 int main(){
     Chain<int> C;
     C.push(1);
@@ -76,5 +79,5 @@ int main(){
     C.remove(4);
     C.print_list();
     C.push_front(5);
-    C.print_list();
+    // C.print_list();
 }
