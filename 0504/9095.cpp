@@ -28,8 +28,8 @@ int main(){
         int num;
         int sum = 1;
         scanf("%d",&num);
-        // main에서 처리하는 부분은 2와 3과 1로 이뤄진 경우이다.
-        //이외의 경우는 위에 함수를 통해 처리가 가능하기 때문이다.
+        /* main에서 처리하는 부분은 2와 3과 1로 이뤄진 경우이다.
+        이외의 경우는 위에 함수를 통해 처리가 가능하기 때문이다.*/
         for(int i = 1 ,k = 2; k <= num; i++, k = i * 2){
             for(int j = 1, l = 3; k + l <= num; j++, l = j * 3){
                 int differentTerms = num - (k + l) + i + j; 
