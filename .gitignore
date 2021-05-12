@@ -2,10 +2,13 @@
 # Created by https://www.toptal.com/developers/gitignore/api/c++,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=c++,python
 
+
+### VSCODE Settings
+*.json
 ### C++ ###
 # Prerequisites
 *.d
-
+*.dSMY
 # Compiled Object files
 *.slo
 *.lo
