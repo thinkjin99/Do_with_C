@@ -5,10 +5,11 @@
 
 ### VSCODE Settings
 *.json
+tempCodeRunnerFile.*
 ### C++ ###
 # Prerequisites
 *.d
-*.dSMY
+*.dSYM
 # Compiled Object files
 *.slo
 *.lo
