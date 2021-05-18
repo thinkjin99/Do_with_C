@@ -5,6 +5,7 @@
 using namespace std;
 vector<int> vertaxArray[1001];
 bool visit[1001] = {false};
+
 void dfs(int vertaxIndex){
     if(visit[vertaxIndex] == true) return;
     vector<int> &vertax = vertaxArray[vertaxIndex];
