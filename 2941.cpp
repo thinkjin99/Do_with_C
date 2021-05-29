@@ -15,7 +15,6 @@ int main(){
     int cnt = 0;
     cin >> s;
     for(int i = 0; i < s.length() - 1; i++){
-    //    cout << s[i] << "  ";
         int loc = i;
         vector <char> letters;
         bool is_complete = false;
@@ -29,16 +28,17 @@ int main(){
             i++;
             is_complete = true;
             letters.push_back(s[loc]);
-            // cout << s[loc] << endl;
         }
         if(is_complete){
-            // for(int i = 0; i < letters.size(); i++){
-            //     point.push_back(letters[i]);
-            // }
             cnt += letters.size() -1;
         }
     }
     cout << s.length() - cnt << endl;
+}
+
+
+
+
     // for(auto it = point.begin(); it != point.end(); it++){
     //     cout << *it << endl;
     // }
@@ -60,4 +60,3 @@ int main(){
 
 
     
-}
