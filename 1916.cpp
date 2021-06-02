@@ -3,17 +3,6 @@
 #include<algorithm>
 using namespace std;
 
-
-void printWeight(int w[],int n){
-    for(int i = 1; i <= n; i++) cout << w[i] << "\t";
-    cout << endl;
-}
-
-void printheap(vector<pair<int,int> > &heap){
-    for(auto it = heap.begin(); it!=heap.end(); it++) cout << (*it).first << "\t";
-    cout << endl;
-}
-
 void MinHeapify(vector<pair<int,int> > &heap, int i){
     while(i <= heap.size() / 2){
         int childIndex = i * 2;
@@ -35,72 +24,46 @@ void BuildMinheap(vector<pair<int,int> > &heap){
     } 
 }
 
-void HeapSort(vector<pair<int,int> > &heap){
-    BuildMinheap(heap);
-    for(int i = heap.size() - 1; i > 0; i--){
-        cout << heap[1].second << endl;
-        swap(heap[1],heap[i]);
-        heap.pop_back();    
-        MinHeapify(heap,1);
-    }
-}
-
-
 int main(){
     int n,m;
+    int startPoint,destination;
     cin >> n >> m;
+    int* weight = new int[n + 1];
+    for(int i = 0; i < n + 1; i++) weight[i] = 987654321;
     bool visited[1000] = {false};
-    vector<pair<int,int>> prioQueue;
-    vector<pair<int,int>> graph[n + 1];
+    vector<pair<int,int>> prioQueue; //우선 순위 큐 (가중치 저장)
+    vector<pair<int,int>> graph[n + 1]; // 간선 정보 표시
     for(int i = 0; i < m; i++){
         int start,end,cost;
         scanf("%d %d %d",&start,&end,&cost);
         graph[start].push_back(make_pair(end,cost));
+    }
 
-    // graph[1].push_back(make_pair(2,2));
-    // graph[1].push_back(make_pair(3,3));
-    // graph[1].push_back(make_pair(4,1));
-    // graph[1].push_back(make_pair(5,10));
+    scanf("%d %d",&startPoint,&destination);
 
-    // graph[2].push_back(make_pair(4,2));
+    // int sortedNums = 0; //현재까지 찾은 최단 거리의 수 
+    // weight[startPoint] = 0; //시작 위치의 가중치는 0으로 처리
 
-    // graph[3].push_back(make_pair(4,1));
-    // graph[3].push_back(make_pair(5,1));
+    // prioQueue.push_back(make_pair(startPoint,0)); // 시작점의 간선 정보
+    // int current = startPoint;
 
-    // graph[4].push_back(make_pair(5,3));
+    // while(sortedNums != n){ //모든 정점의 최단거리를 구할 때 까지.
+    //     visited[current] = true;
+    //     for(int i = 0; i < graph[current].size(); i++){
+    //         int next = graph[current][i].first;
+    //         int nextD = graph[current][i].second;
+    //         if(visited[next] != true && weight[current] + nextD < weight[next]){
+    //                 weight[next] = weight[current] + nextD;
+    //                 prioQueue.push_back(make_pair(next, nextD));
+    //         }
+    //     }
+    //     BuildMinheap(prioQueue); //최소힙으로 구성
+    //     current = prioQueue[1].first; //최소 값 추출
+    //     swap(prioQueue[1],prioQueue[prioQueue.size() - 1]);
+    //     prioQueue.pop_back(); //최소 값을 제거
+    //     MinHeapify(prioQueue,1); //다시금 최소 힙으로 생성
+    //     sortedNums++; //최단거리를 알고있는 정점의 수 증가
     // }
 
-    int startPoint,destination;
-    std:: cin >> startPoint >> destination;
-
-    int* weight = new int[n + 1];
-    for(int i = 0; i < n + 1; i++) weight[i] = 1000001;
-    weight[startPoint] = 0;
-
-    int sortedNums = 0;
-    prioQueue.push_back(make_pair(startPoint,0));
-    int current = startPoint;
-    int distance = 0;
-
-    while(sortedNums != n){
-        visited[current] = true;
-        for(int j = 0; j < graph[current].size(); j++){
-            int next = graph[current][j].first;
-            int nextD = graph[current][j].second;
-            if(visited[next] != true && weight[current] + nextD < weight[next]){
-                    weight[next] = weight[current] + nextD;
-                    prioQueue.push_back(make_pair(next, nextD));
-            }
-        }
-        printheap(prioQueue);
-        BuildMinheap(prioQueue);
-        printWeight(weight,n);
-        current = prioQueue[1].first;
-        distance = prioQueue[1].second;
-        swap(prioQueue[1],prioQueue[prioQueue.size() - 1]);
-        prioQueue.pop_back();
-        MinHeapify(prioQueue,1);
-        sortedNums++;
-    }
-    // printArray(graph);
+    // cout << weight[destination] << endl;
 }
