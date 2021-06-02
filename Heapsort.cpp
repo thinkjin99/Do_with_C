@@ -1,6 +1,4 @@
 #include<iostream>
-#include<stdlib.h>
-#include<time.h>
 #include<algorithm>
 #include<vector>
 using namespace std;
@@ -15,6 +13,7 @@ void MinHeapify(vector<pair<int,int> > &heap, int i){
         int childIndex = i * 2;
         if(childIndex >= heap.size()) return;
         int k = (heap[childIndex].second < heap[childIndex + 1].second) ? childIndex : childIndex + 1;
+        //자식 인덱스 +1 의 경우 heap.size()와 일치하는 경우가 있어 bound over가 일어나는 경우가 발생한다.
         if(childIndex + 1 == heap.size()){
             k = childIndex;
         }
@@ -41,15 +40,14 @@ void HeapSort(vector<pair<int,int> > &heap){
 }
 
 int main(){
-    srand(time(NULL));
     vector<pair<int,int>> heap;
     heap.push_back(make_pair(0,0));
-    int cnt = 10;
-    for(int i = 1; i < cnt; i++){
-        heap.push_back(make_pair(i,i));
+    int cnt;
+    scanf("%d",&cnt);
+    for(int i = 1; i <= cnt; i++){
+        int n;
+        scanf("%d",&n);
+        heap.push_back(make_pair(i,n));
     }
     HeapSort(heap);
-    for(int i = 1; i < cnt; i++){
-        // cout << heap[i].first << " : " << heap[i].second << endl;
-    }
 }
