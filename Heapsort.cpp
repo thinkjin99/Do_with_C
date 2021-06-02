@@ -1,53 +1,44 @@
 #include<iostream>
 #include<algorithm>
 #include<vector>
+#include<stdlib.h>
+#include<time.h>
 using namespace std;
 
-void printheap(vector<pair<int,int> > &heap){
-    for(auto it = heap.begin(); it!=heap.end(); it++) cout << (*it).first << "\t";
+void printheap(vector<int> &heap){
+    for(auto it = heap.begin(); it!=heap.end(); it++) cout << *it << "\t";
     cout << endl;
 }
 
-void MinHeapify(vector<pair<int,int> > &heap, int i){
-    while(i <= heap.size() / 2){
-        int childIndex = i * 2;
-        if(childIndex >= heap.size()) return;
-        int k = (heap[childIndex].second < heap[childIndex + 1].second) ? childIndex : childIndex + 1;
-        //자식 인덱스 +1 의 경우 heap.size()와 일치하는 경우가 있어 bound over가 일어나는 경우가 발생한다.
-        if(childIndex + 1 == heap.size()){
-            k = childIndex;
-        }
-        if(heap[i].second <= heap[k].second) return;
-        swap(heap[i],heap[k]);
-        i = k;
+void MinHeapify(vector<int> &heap, const int root, int n){
+    int e = heap[root];
+    int i = 2 * root;
+    for(; i <= n; i++){
+        if(i < n && heap[i] < heap[i+1]) i++;
+        if(e >= heap[i]) break;
+        heap[i/2] = heap[i];
     }
+    heap[i/2] = e;
 }
 
-void BuildMinheap(vector<pair<int,int> > &heap){
+void BuildMinheap(vector<int> &heap, int cnt){
     for(int i = heap.size() / 2;  i >= 1; i--){
-        MinHeapify(heap,i);
+        MinHeapify(heap,i,cnt);
     } 
 }
 
-void HeapSort(vector<pair<int,int> > &heap){
-    BuildMinheap(heap);
-    for(int i = heap.size() - 1; i > 0; i--){
-        cout << heap[1].second << endl;
-        swap(heap[1],heap[i]);
-        heap.pop_back();    
-        MinHeapify(heap,1);
-    }
-}
+// void HeapSort(vector<int> &heap){
+//     BuildMinheap(heap);
+// }
 
 int main(){
-    vector<pair<int,int>> heap;
-    heap.push_back(make_pair(0,0));
-    int cnt;
-    scanf("%d",&cnt);
+    time(NULL);
+    vector<int> heap;
+    heap.push_back(0);
+    int cnt = 10;
     for(int i = 1; i <= cnt; i++){
-        int n;
-        scanf("%d",&n);
-        heap.push_back(make_pair(i,n));
+        heap.push_back(i);
     }
-    HeapSort(heap);
+    BuildMinheap(heap,cnt);
+    printheap(heap);
 }
