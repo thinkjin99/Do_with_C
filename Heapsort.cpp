@@ -13,9 +13,9 @@ void printheap(vector<int> &heap){
 void MinHeapify(vector<int> &heap, const int root, int n){
     int e = heap[root];
     int i = 2 * root;
-    for(; i <= n; i++){
-        if(i < n && heap[i] < heap[i+1]) i++;
-        if(e >= heap[i]) break;
+    for(; i <= n; i*=2){
+        if(i < n && heap[i] > heap[i+1]) i++;
+        if(e <= heap[i]) break;
         heap[i/2] = heap[i];
     }
     heap[i/2] = e;
@@ -37,7 +37,7 @@ int main(){
     heap.push_back(0);
     int cnt = 10;
     for(int i = 1; i <= cnt; i++){
-        heap.push_back(i);
+        heap.push_back(rand()%100);
     }
     BuildMinheap(heap,cnt);
     printheap(heap);
