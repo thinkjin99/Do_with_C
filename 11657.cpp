@@ -13,7 +13,7 @@ void printWeight(long long* w, int n){
 bool BellFord(vector<pair<int,int>> (&graph)[maxCityNum], long long weight[], int n){
     for(int i = 1; i <= n; i++){ //정점의 개수 -1개 까지 반복
         for(int j = 1; j <= n; j++){ //도시의 수만큼 반복
-            if(weight[j] == INF) continue;
+            if(weight[j] == INF) continue; //음의 사이클 발생!
             for(int k = 0; k < graph[j].size(); k++){
                 int next = graph[j][k].first;
                 int nDistance = graph[j][k].second;
